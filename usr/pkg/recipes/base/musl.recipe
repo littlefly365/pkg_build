@@ -1,0 +1,21 @@
+# Category: Base System
+# Last Update: 13-September-2026
+# Maintainer: littlefly365
+
+pkgname=musl
+pkgver=1.2.6
+pkgrel=0
+pkgdesc="A lightweight implementation of the C standard library for Linux"
+url=https://musl.libc.org
+source=$url/releases/$pkgname-$pkgver.tar.gz
+license=MIT
+
+build_style=gnu_configure
+extra_args="--syslibdir=$SYSLIBDIR --disable-static --disable-gcc-wrapper"
+
+post_install_step()
+{
+	ln -sv libc.so $LIBDIR/libm.so
+	ln -sv libc.so $LIBDIR/libpthread.so
+	ln -sv libc.so $LIBDIR/libcrypt.so
+}
