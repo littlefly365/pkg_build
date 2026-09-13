@@ -1,0 +1,14 @@
+# Category: Base System
+# Last Update: 13-September-2026
+# Maintainer: littlefly365
+
+pkgname=zlib
+pkgver=1.3.2
+pkgrel=0
+pkgdesc="A compression/decompression library"
+url=https://zlib.net
+source=$url/fossils/$pkgname-$pkgver.tar.gz
+license=Zlib
+
+build_style=gnu_configure
+configure_args="--prefix=$PREFIX"
