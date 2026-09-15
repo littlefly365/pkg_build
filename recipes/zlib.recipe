@@ -12,8 +12,3 @@ license=Zlib
 
 build_style=gnu_configure
 configure_args="--prefix=$PREFIX"
-
-post_install_step()
-{
-	slib-remove $LIBDIR
-}

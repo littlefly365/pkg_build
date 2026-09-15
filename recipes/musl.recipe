@@ -1,5 +1,5 @@
 # Category: Base System
-# Last Update: 13-September-2026
+# Last Update: 14-September-2026
 # Maintainer: littlefly365
 
 pkgname=musl
@@ -11,11 +11,13 @@ source=$url/releases/$pkgname-$pkgver.tar.gz
 license=MIT
 
 build_style=gnu_configure
-extra_args="--syslibdir=$SYSLIBDIR --disable-static --disable-gcc-wrapper"
+configure_args="--prefix=$PREFIX --syslibdir=$SYSLIBDIR --disable-static --disable-gcc-wrapper"
 
 post_install_step()
 {
-	ln -sv libc.so $LIBDIR/libm.so
-	ln -sv libc.so $LIBDIR/libpthread.so
-	ln -sv libc.so $LIBDIR/libcrypt.so
+	ln -sfv libc.so $LIBDIR/libm.so
+	ln -sfv libc.so $LIBDIR/libpthread.so
+
+	ln -sfv ../lib/libc.so $BINDIR/ldd
+	ln -sfv true $BINDIR/ldconfig
 }
