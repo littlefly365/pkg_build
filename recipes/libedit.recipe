@@ -1,0 +1,15 @@
+# Category: Base System
+# Last Update: 14-September-2026
+# Maintainer: littlefly365
+
+pkgname=libedit
+pkgver=20260512-3.1
+pkgrel=0
+pkgdesc="Port of the NetBSD editline library"
+arch=all
+url=https://thrysoee.dk/editline
+source=$url/$pkgname-$pkgver.tar.gz
+license=BSD-3
+
+build_style=gnu_configure
+configure_args="--prefix=$PREFIX --disable-static"

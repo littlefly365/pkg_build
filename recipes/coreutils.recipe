@@ -1,0 +1,29 @@
+# Category: Base System
+# Last Update: 14-September-2026
+# Maintainer: littlefly365
+
+pkgname=coreutils
+pkgver=9.10
+pkgrel=0
+pkgdesc="GNU implementation of basic unix commands"
+arch=all
+url=https://www.gnu.org/software/coreutils
+source=https://ftpmirror.gnu.org/$pkgname/$pkgname-$pkgver.tar.gz
+license=GPL-3
+
+build_style=gnu_configure
+
+prepare_step()
+{
+	autoreconf -fv
+	automake -af
+	export FORCE_UNSAFE_CONFIGURE=1
+}
+
+post_install_step()
+{
+	unset FORCE_UNSAFE_CONFIGURE
+	mv -v $BINDIR/chroot $SBINDIR
+	mv -v $PREFIX/share/man/man1/chroot.1 $PREFIX/share/man/man8/chroot.8
+	sed -i 's/"1"/"8"/' $PREFIX/share/man/man8/chroot.8
+}

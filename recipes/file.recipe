@@ -1,0 +1,15 @@
+# Category: Base System
+# Last Update: 14-September-2026
+# Maintainer: littlefly365
+
+pkgname=file
+pkgver=5.48
+pkgrel=0
+pkgdesc="The file command and the libmagic library
+arch=all
+url=https://www.darwinsys.com/file
+source=https://astron.com/pub/$pkgname/$pkgname-$pkgver.tar.gz
+license=BSD-2
+
+build_style=gnu_configure
+configure_args="--prefix=$PREFIX"

@@ -1,0 +1,34 @@
+# Category: Base System
+# Last Update: 14-September-2026
+# Maintainer: littlefly365
+
+pkgname=gcc
+pkgver=16.2.0
+pkgrel=0
+pkgdesc="The GNU Compiler Collection"
+arch=all
+url=https://gcc.gnu.org/
+source=https://ftpmirror.gnu.org/$pkgname/$pkgname-$pkgver/$pkgname-$pkgver.tar.gz
+license=GPL-3
+
+build_style=gnu_configure
+configure_args="--prefix=$PREFIX LD=ld --enable-languages=c,c++ --enable-default-pie --enable-default-ssp \
+		--enable-host-pie --enable-targets=all --disable-multilib --disable-bootstrap \
+		--disable-fixincludes --with-system-zlib"
+
+prepare_step()
+{
+	if [ "$HOST_ARCH" -eq "x86_64" ]; then
+		sed -e '/m64=/s/lib64/lib' -i.orig gcc/config/i386/t-linux64
+	fi
+}
+
+post_install_step()
+{
+	ln -sfrv $BINDIR/cpp $LIBDIR/cpp
+	ln -svf gcc.1 $PREFIX/share/man/man1/cc.1
+	ln -sfvr $(gcc -print-prog-name=liblto_plugin.so) $LIBDIR/bfd-plugins/
+	
+	mkdir -pv $PREFIX/share/gdb/auto-load/usr/lib
+	mv -v $LIBDIR/*gdb.py $PREFIX/share/gdb/auto-load/usr/lib
+}

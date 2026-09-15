@@ -1,0 +1,22 @@
+# Category: Base System
+# Last Update: 14-September-2026
+# Maintainer: littlefly365
+
+pkgname=binutils
+pkgver=2.46.0
+pkgrel=0
+pkgdesc="Tools to manipulate object files"
+arch=all
+url=https://www.gnu.org/software/binutils
+source=https://sourceware.org/pub/$pkgname/releases/$pkgname-$pkgver.tar.xz
+license=GPL-3
+
+build_style=gnu_configure
+configure_args="--prefix=$PREFIX --sysconfdir=$SYSCONFDIR --enable-ld=default \
+		--enable-plugins --enable-shared --disable-werror --with-system-zlib \
+		--enable-64-bits-bfd --enable-new-dtags --enable-default-hash-style=gnu"
+
+post_install_step()
+{
+	rm -rfv /usr/share/doc/gprofng/
+}

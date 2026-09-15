@@ -1,0 +1,14 @@
+# Category: Base System
+# Last Update: 14-September-2026
+# Maintainer: littlefly365
+
+pkgname=less
+pkgver=704
+pkgrel=0
+pkgdesc="An advanced and modern pager"
+arch=all
+url=https://www.greenwoodsoftware.com/less
+source=$url/$pkgname-$pkgver.tar.gz
+license=BSD-2
+
+build_style=gnu_configure
