@@ -5,7 +5,7 @@
 pkgname=file
 pkgver=5.48
 pkgrel=0
-pkgdesc="The file command and the libmagic library
+pkgdesc="The file command and the libmagic library"
 arch=all
 url=https://www.darwinsys.com/file
 source=https://astron.com/pub/$pkgname/$pkgname-$pkgver.tar.gz
